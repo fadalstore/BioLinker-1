@@ -73,6 +73,7 @@ document.querySelectorAll('.ad-banner, .floating-ad, .content-ad').forEach(funct
     ad.addEventListener('click', function() {
         try {
             console.log('Ad clicked - tracking revenue');
+            trackAdClick(); // Track the ad click
         } catch (error) {
             console.log('Ad click error handled');
         }
@@ -195,10 +196,134 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+        
+        // Track visitor
+        trackVisitor();
     } catch (error) {
         console.log('Newsletter input error handled');
     }
 });
+
+// Visitor Tracking System
+function trackVisitor() {
+    try {
+        // Get current visitor count
+        let totalVisitors = parseInt(localStorage.getItem('totalVisitors') || '0');
+        let todayVisitors = parseInt(localStorage.getItem('todayVisitors') || '0');
+        let adClicks = parseInt(localStorage.getItem('adClicks') || '0');
+        
+        // Check if this is a new visitor today
+        const today = new Date().toDateString();
+        const lastVisitDate = localStorage.getItem('lastVisitDate');
+        
+        if (lastVisitDate !== today) {
+            // Reset daily count if it's a new day
+            if (lastVisitDate && lastVisitDate !== today) {
+                todayVisitors = 0;
+            }
+            todayVisitors++;
+            localStorage.setItem('todayVisitors', todayVisitors.toString());
+            localStorage.setItem('lastVisitDate', today);
+        }
+        
+        // Check if this is a new session (new visitor)
+        const sessionKey = 'visitor_session_' + Date.now();
+        if (!sessionStorage.getItem('currentSession')) {
+            totalVisitors++;
+            localStorage.setItem('totalVisitors', totalVisitors.toString());
+            sessionStorage.setItem('currentSession', sessionKey);
+            
+            // Add to recent visitors list
+            addRecentVisitor();
+        }
+        
+        console.log(`Total Visitors: ${totalVisitors}, Today: ${todayVisitors}`);
+        
+    } catch (error) {
+        console.log('Visitor tracking error handled');
+    }
+}
+
+// Add recent visitor
+function addRecentVisitor() {
+    try {
+        const visitors = JSON.parse(localStorage.getItem('recentVisitors') || '[]');
+        
+        // Get basic visitor info
+        const visitorInfo = {
+            timestamp: new Date().toLocaleString('so-SO'),
+            country: getVisitorCountry(),
+            device: getDeviceType(),
+            page: document.title || 'Home',
+            ip: 'Hidden', // For privacy
+            userAgent: navigator.userAgent.substring(0, 50) + '...'
+        };
+        
+        visitors.push(visitorInfo);
+        
+        // Keep only last 50 visitors
+        if (visitors.length > 50) {
+            visitors.shift();
+        }
+        
+        localStorage.setItem('recentVisitors', JSON.stringify(visitors));
+        
+    } catch (error) {
+        console.log('Recent visitor tracking error handled');
+    }
+}
+
+// Get visitor country (simplified)
+function getVisitorCountry() {
+    try {
+        // This is a simple approach - for real geolocation, you'd use an API
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const language = navigator.language || navigator.userLanguage;
+        
+        if (timezone.includes('Mogadishu') || language.includes('so')) {
+            return '🇸🇴 Somalia';
+        } else if (timezone.includes('Nairobi')) {
+            return '🇰🇪 Kenya';
+        } else if (timezone.includes('Dubai')) {
+            return '🇦🇪 UAE';
+        } else if (language.includes('en')) {
+            return '🇺🇸 English Speaker';
+        } else {
+            return '🌍 Unknown';
+        }
+    } catch (error) {
+        return '🌍 Unknown';
+    }
+}
+
+// Get device type
+function getDeviceType() {
+    try {
+        const userAgent = navigator.userAgent;
+        
+        if (/tablet|ipad|playbook|silk/i.test(userAgent)) {
+            return '📱 Tablet';
+        } else if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile/i.test(userAgent)) {
+            return '📱 Mobile';
+        } else {
+            return '💻 Desktop';
+        }
+    } catch (error) {
+        return '❓ Unknown';
+    }
+}
+
+// Track ad clicks
+function trackAdClick() {
+    try {
+        let adClicks = parseInt(localStorage.getItem('adClicks') || '0');
+        adClicks++;
+        localStorage.setItem('adClicks', adClicks.toString());
+        console.log(`Ad Clicks: ${adClicks}`);
+    } catch (error) {
+        console.log('Ad click tracking error handled');
+    }
+}
 
 // Auto Share Functions
 const shareData = {
