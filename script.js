@@ -325,12 +325,103 @@ function trackAdClick() {
     }
 }
 
-// Auto Share Functions
+// Auto Share Functions with Viral Tracking
 const shareData = {
     url: window.location.href,
     title: 'FadalRewards - Making Money Online',
-    text: '🌟 Lacagta Online ku Sameynta! FadalRewards - Content Creator & Online Entrepreneur. Barashada ganacsiga, freelancing, iyo halal business tips! 💰✨'
+    text: '🌟 Lacagta Online ku Sameynta! FadalRewards - Content Creator & Online Entrepreneur. Barashada ganacsiga, freelancing, iyo halal business tips! 💰✨\n\n🎁 BONUS: Haddaad share garayso waxaad helaysaa FREE business resources! Check-garee link-ka hoose:'
 };
+
+// Track shares
+function trackShare(platform) {
+    try {
+        let shares = JSON.parse(localStorage.getItem('shares') || '{}');
+        const today = new Date().toDateString();
+        
+        if (!shares[today]) {
+            shares[today] = {};
+        }
+        
+        if (!shares[today][platform]) {
+            shares[today][platform] = 0;
+        }
+        
+        shares[today][platform]++;
+        localStorage.setItem('shares', JSON.stringify(shares));
+        
+        // Add to recent shares feed
+        addRecentShare(platform);
+        
+        console.log(`Share tracked: ${platform}`);
+        
+        // Show thank you message
+        showShareThankYou(platform);
+        
+    } catch (error) {
+        console.log('Share tracking error handled');
+    }
+}
+
+// Add recent share to feed
+function addRecentShare(platform) {
+    try {
+        const sharesFeed = document.getElementById('sharesFeed');
+        if (!sharesFeed) return;
+        
+        const shareItem = document.createElement('div');
+        shareItem.className = 'share-item';
+        shareItem.innerHTML = `
+            <i class="fas fa-user-circle"></i>
+            <span>Qof ayaa website-ka share garay ${platform}</span>
+            <small>Hadda</small>
+        `;
+        
+        sharesFeed.insertBefore(shareItem, sharesFeed.firstChild);
+        
+        // Keep only last 5 items
+        const items = sharesFeed.querySelectorAll('.share-item');
+        if (items.length > 5) {
+            items[items.length - 1].remove();
+        }
+        
+    } catch (error) {
+        console.log('Recent share feed error handled');
+    }
+}
+
+// Show thank you message
+function showShareThankYou(platform) {
+    try {
+        const message = `✅ Mahadsanid share gareysay ${platform}! 🎁 Check email-kaaga si aad u hesho FREE business resources!`;
+        
+        const alertDiv = document.createElement('div');
+        alertDiv.innerHTML = message;
+        alertDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-4);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-weight: bold;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        `;
+        
+        document.body.appendChild(alertDiv);
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 5000);
+        
+    } catch (error) {
+        console.log('Share thank you error handled');
+    }
+}
 
 // WhatsApp Share
 function shareToWhatsApp() {
@@ -338,6 +429,7 @@ function shareToWhatsApp() {
         const message = encodeURIComponent(`${shareData.text}\n\n${shareData.url}`);
         const whatsappUrl = `https://wa.me/?text=${message}`;
         window.open(whatsappUrl, '_blank');
+        trackShare('WhatsApp');
         console.log('WhatsApp share opened');
     } catch (error) {
         console.log('WhatsApp share error handled');
@@ -349,6 +441,7 @@ function shareToFacebook() {
     try {
         const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareData.url)}`;
         window.open(facebookUrl, '_blank', 'width=600,height=400');
+        trackShare('Facebook');
         console.log('Facebook share opened');
     } catch (error) {
         console.log('Facebook share error handled');
@@ -361,6 +454,7 @@ function shareToTwitter() {
         const twitterText = encodeURIComponent(`${shareData.text} ${shareData.url}`);
         const twitterUrl = `https://twitter.com/intent/tweet?text=${twitterText}`;
         window.open(twitterUrl, '_blank', 'width=600,height=400');
+        trackShare('Twitter');
         console.log('Twitter share opened');
     } catch (error) {
         console.log('Twitter share error handled');
@@ -373,6 +467,7 @@ function shareToTelegram() {
         const telegramText = encodeURIComponent(`${shareData.text}\n${shareData.url}`);
         const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(shareData.url)}&text=${telegramText}`;
         window.open(telegramUrl, '_blank');
+        trackShare('Telegram');
         console.log('Telegram share opened');
     } catch (error) {
         console.log('Telegram share error handled');
@@ -387,6 +482,7 @@ function copyToClipboard() {
         if (navigator.clipboard) {
             navigator.clipboard.writeText(textToCopy).then(() => {
                 showCopySuccess();
+                trackShare('Copy Link');
             });
         } else {
             // Fallback for older browsers
@@ -397,6 +493,7 @@ function copyToClipboard() {
             document.execCommand('copy');
             document.body.removeChild(textArea);
             showCopySuccess();
+            trackShare('Copy Link');
         }
         console.log('Link copied to clipboard');
     } catch (error) {
