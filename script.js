@@ -781,6 +781,260 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Engaging Content Functions
+
+// Open Article Function
+function openArticle(articleId) {
+    try {
+        const articles = {
+            'article1': {
+                title: '10 Hab oo Lacag Looga Sameeyo Freelancing',
+                content: `
+                    <h3>10 Hab oo Lacag Looga Sameeyo Freelancing</h3>
+                    <p><strong>1. Content Writing:</strong> Blog posts, articles, iyo web content qor. $10-50 per article.</p>
+                    <p><strong>2. Translation Services:</strong> Turjumo English iyo Somali. $0.10-0.30 per word.</p>
+                    <p><strong>3. Data Entry:</strong> Xog dhigista iyo data processing. $5-15 per hour.</p>
+                    <p><strong>4. Virtual Assistant:</strong> Admin tasks iyo customer service. $8-25 per hour.</p>
+                    <p><strong>5. Social Media Management:</strong> Accounts maamul. $300-1000 per month.</p>
+                    <p><strong>6. Graphic Design:</strong> Logos, banners, posters samee. $25-200 per project.</p>
+                    <p><strong>7. Web Development:</strong> Simple websites samee. $500-5000 per project.</p>
+                    <p><strong>8. Video Editing:</strong> Videos edit garee. $20-100 per video.</p>
+                    <p><strong>9. Online Tutoring:</strong> Language ama skills bar. $10-50 per hour.</p>
+                    <p><strong>10. Voiceover Work:</strong> Audio recording iyo narration. $100-500 per project.</p>
+                    
+                    <h4>Platform-ka ugu Fiican:</h4>
+                    <ul>
+                        <li>🌟 Upwork - All-round freelancing</li>
+                        <li>🌟 Fiverr - Quick gigs</li>
+                        <li>🌟 Freelancer - Competitive bidding</li>
+                        <li>🌟 Guru - Professional services</li>
+                    </ul>
+                `
+            },
+            'article2': {
+                title: 'Sidee Loo Bilaabo Online Business 2024',
+                content: `
+                    <h3>Complete Guide: Online Business 2024</h3>
+                    <p><strong>Step 1: Idea Generation</strong></p>
+                    <p>Market research samee oo arka waxaa dadku u baahan yihiin. Use Google Trends, social media, iyo competitor analysis.</p>
+                    
+                    <p><strong>Step 2: Business Plan</strong></p>
+                    <p>Qor business plan-kaaga oo ku qor: Target audience, pricing strategy, marketing plan, iyo financial projections.</p>
+                    
+                    <p><strong>Step 3: Legal Requirements</strong></p>
+                    <p>Business registration, tax requirements, iyo legal compliance. Consult lawyer haddii loo baahdo.</p>
+                    
+                    <p><strong>Step 4: Website & Online Presence</strong></p>
+                    <p>Professional website samee, social media accounts, iyo email marketing setup.</p>
+                    
+                    <p><strong>Step 5: Product/Service Development</strong></p>
+                    <p>MVP (Minimum Viable Product) samee oo test garee customers-ka real ah.</p>
+                    
+                    <p><strong>Step 6: Marketing & Sales</strong></p>
+                    <p>SEO, social media marketing, email campaigns, iyo paid advertising strategy implement garee.</p>
+                    
+                    <h4>Top Business Ideas 2024:</h4>
+                    <ul>
+                        <li>💼 E-commerce store</li>
+                        <li>💼 Digital marketing agency</li>
+                        <li>💼 Online courses/coaching</li>
+                        <li>💼 SaaS products</li>
+                        <li>💼 Affiliate marketing</li>
+                    </ul>
+                `
+            },
+            'article3': {
+                title: 'Islamic Finance: Halal Investment Tips',
+                content: `
+                    <h3>Islamic Finance & Halal Investment Guide</h3>
+                    
+                    <p><strong>Principles of Islamic Finance:</strong></p>
+                    <ul>
+                        <li>🕌 No Interest (Riba) - Fixed interest ma ogola</li>
+                        <li>🕌 No Gambling (Maysir) - Speculative trading ma ogola</li>
+                        <li>🕌 No Uncertainty (Gharar) - Excessive risk ma ogola</li>
+                        <li>🕌 Ethical Business - Haram industries ma ogola</li>
+                    </ul>
+                    
+                    <p><strong>Halal Investment Options:</strong></p>
+                    <p><strong>1. Islamic Banking:</strong> Sharia-compliant banks oo profit-sharing isticmaala.</p>
+                    <p><strong>2. Sukuk (Islamic Bonds):</strong> Asset-backed securities oo interest-free ah.</p>
+                    <p><strong>3. Halal Stocks:</strong> Companies oo sharia-compliant ah (avoid alcohol, gambling, etc.)</p>
+                    <p><strong>4. Real Estate:</strong> Property investment oo halal ah.</p>
+                    <p><strong>5. Gold & Commodities:</strong> Physical assets oo value stable ah.</p>
+                    
+                    <p><strong>Prohibited Industries:</strong></p>
+                    <ul>
+                        <li>❌ Alcohol & tobacco</li>
+                        <li>❌ Gambling & casinos</li>
+                        <li>❌ Adult entertainment</li>
+                        <li>❌ Conventional banking (interest-based)</li>
+                        <li>❌ Insurance companies (conventional)</li>
+                    </ul>
+                    
+                    <p><strong>Recommended Platforms:</strong></p>
+                    <ul>
+                        <li>📱 Islamic banking apps</li>
+                        <li>📱 Halal investment platforms</li>
+                        <li>📱 Sukuk trading platforms</li>
+                    </ul>
+                `
+            }
+        };
+        
+        if (articles[articleId]) {
+            showContentModal(articles[articleId].title, articles[articleId].content);
+            trackUserAction('article_read');
+        }
+    } catch (error) {
+        console.log('Article open error handled');
+    }
+}
+
+// Open Video Function
+function openVideo(videoId) {
+    try {
+        const videos = {
+            'video1': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            'video2': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            'video3': 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+        };
+        
+        if (videos[videoId]) {
+            const videoContent = `
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    <iframe src="${videos[videoId]}" 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <p style="margin-top: 15px; color: var(--text-secondary);">
+                    📺 Mahadsanid video-ga daawashadaada! Subscribe gareynayso social media accounts-kayaga si aad u hesho content cusub!
+                </p>
+            `;
+            showContentModal('Video Tutorial', videoContent);
+            trackUserAction('video_watched');
+        }
+    } catch (error) {
+        console.log('Video open error handled');
+    }
+}
+
+// Play Podcast Function
+function playPodcast(podcastId) {
+    try {
+        showNotification('🎧 Podcast player functionality coming soon! Subscribe newsletter-ka si aad u hesho updates!', 'info');
+        trackUserAction('podcast_clicked');
+    } catch (error) {
+        console.log('Podcast play error handled');
+    }
+}
+
+// Download E-book Function
+function downloadEbook(ebookId) {
+    try {
+        const ebooks = {
+            'ebook1': 'Complete Freelancing Guide 2024',
+            'ebook2': 'Islamic Business Ethics'
+        };
+        
+        if (ebooks[ebookId]) {
+            showNotification(`📚 ${ebooks[ebookId]} ayaa la download gareeyay! Check email-kaaga si aad u hesho download link-ka.`, 'success');
+            trackUserAction('ebook_downloaded');
+            
+            // Simulate download tracking
+            let downloads = parseInt(localStorage.getItem(`ebook_${ebookId}_downloads`) || '0');
+            downloads++;
+            localStorage.setItem(`ebook_${ebookId}_downloads`, downloads.toString());
+        }
+    } catch (error) {
+        console.log('E-book download error handled');
+    }
+}
+
+// Show Content Modal
+function showContentModal(title, content) {
+    try {
+        const modal = document.createElement('div');
+        modal.className = 'content-modal';
+        modal.innerHTML = `
+            <div class="modal-overlay" onclick="closeContentModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>${title}</h3>
+                    <button class="close-btn" onclick="closeContentModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ${content}
+                </div>
+                <div class="modal-footer">
+                    <button class="share-content-btn" onclick="shareContent('${title}')">
+                        <i class="fas fa-share"></i> Share Content
+                    </button>
+                    <button class="like-content-btn" onclick="likeContent()">
+                        <i class="fas fa-heart"></i> Like
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        document.body.style.overflow = 'hidden';
+        
+    } catch (error) {
+        console.log('Content modal error handled');
+    }
+}
+
+// Close Content Modal
+function closeContentModal() {
+    try {
+        const modal = document.querySelector('.content-modal');
+        if (modal) {
+            modal.remove();
+            document.body.style.overflow = 'auto';
+        }
+    } catch (error) {
+        console.log('Close modal error handled');
+    }
+}
+
+// Share Content Function
+function shareContent(title) {
+    try {
+        const shareText = `🌟 Check out this amazing content: "${title}" from FadalRewards! 💰✨\n\n${window.location.href}`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: title,
+                text: shareText,
+                url: window.location.href
+            });
+        } else {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareText);
+                showNotification('📋 Content link copied to clipboard!', 'success');
+            }
+        }
+        trackUserAction('content_shared');
+    } catch (error) {
+        console.log('Content share error handled');
+    }
+}
+
+// Like Content Function
+function likeContent() {
+    try {
+        showNotification('❤️ Mahadsanid like gareysay content-ka! More amazing content is coming!', 'success');
+        trackUserAction('content_liked');
+    } catch (error) {
+        console.log('Content like error handled');
+    }
+}
+
 // Add slide out animation for notifications
 const style = document.createElement('style');
 style.textContent = `
@@ -793,6 +1047,138 @@ style.textContent = `
             transform: translateX(100%);
             opacity: 0;
         }
+    }
+    
+    /* Content Modal Styles */
+    .content-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+    }
+    
+    .modal-content {
+        position: relative;
+        background: var(--card-bg);
+        border-radius: 15px;
+        max-width: 800px;
+        max-height: 90vh;
+        width: 90%;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px;
+        border-bottom: 2px solid var(--secondary-bg);
+    }
+    
+    .modal-header h3 {
+        color: var(--text-primary);
+        margin: 0;
+        font-size: 24px;
+    }
+    
+    .close-btn {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px;
+        transition: color 0.3s ease;
+    }
+    
+    .close-btn:hover {
+        color: var(--accent);
+    }
+    
+    .modal-body {
+        padding: 30px;
+        max-height: 60vh;
+        overflow-y: auto;
+        color: var(--text-primary);
+        line-height: 1.6;
+    }
+    
+    .modal-body h3 {
+        color: var(--accent);
+        margin-bottom: 20px;
+    }
+    
+    .modal-body h4 {
+        color: var(--text-primary);
+        margin: 20px 0 10px 0;
+    }
+    
+    .modal-body ul {
+        padding-left: 20px;
+        margin: 15px 0;
+    }
+    
+    .modal-body li {
+        margin-bottom: 8px;
+        color: var(--text-secondary);
+    }
+    
+    .modal-footer {
+        display: flex;
+        gap: 15px;
+        padding: 20px 30px;
+        border-top: 2px solid var(--secondary-bg);
+        background: var(--secondary-bg);
+    }
+    
+    .share-content-btn,
+    .like-content-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .share-content-btn {
+        background: var(--gradient-4);
+        color: white;
+    }
+    
+    .like-content-btn {
+        background: var(--gradient-2);
+        color: white;
+    }
+    
+    .share-content-btn:hover,
+    .like-content-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 `;
 document.head.appendChild(style);
