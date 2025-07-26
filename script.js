@@ -78,3 +78,124 @@ document.querySelectorAll('.ad-banner, .floating-ad, .content-ad').forEach(funct
         }
     });
 });
+
+// Newsletter Subscription
+function subscribeNewsletter() {
+    try {
+        const email = document.getElementById('newsletterEmail').value;
+        if (email && email.includes('@')) {
+            alert('✅ Mahadsanid! Email-kaaga ayaan ku daray newsletter-kayaga. Waxaad heli doontaa tips cusub maalin walba!');
+            document.getElementById('newsletterEmail').value = '';
+            
+            // Update subscriber count
+            const countElement = document.querySelector('.subscriber-count span');
+            if (countElement) {
+                const currentCount = parseInt(countElement.textContent.match(/\d+/)[0]);
+                countElement.textContent = `${currentCount + 1}+ dadka ah ayaa newsletter-kayaga subscribe u ah!`;
+            }
+        } else {
+            alert('❌ Fadlan email sax ah ku qor!');
+        }
+    } catch (error) {
+        console.log('Newsletter subscription error handled');
+    }
+}
+
+// Download Resources
+function downloadResource(type) {
+    try {
+        let message = '';
+        switch(type) {
+            case 'ebook':
+                message = '📚 E-Book-ga ayaa la download gareeyay! Check email-kaaga si aad u hesho download link-ka.';
+                break;
+            case 'template':
+                message = '📄 Templates-ka ayaa la download gareeyay! Waxaad ka heli kartaa Downloads folder-kaaga.';
+                break;
+            case 'checklist':
+                message = '✅ Success Checklist-ka ayaa la download gareeyay! Good luck lacagta online samaynta!';
+                break;
+        }
+        alert(message);
+        console.log(`Resource downloaded: ${type}`);
+    } catch (error) {
+        console.log('Download error handled');
+    }
+}
+
+// Testimonials Slider
+let currentTestimonial = 0;
+const testimonials = document.querySelectorAll('.testimonial');
+const dots = document.querySelectorAll('.dot');
+
+function showTestimonial(index) {
+    try {
+        // Remove active class from all
+        testimonials.forEach(t => t.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        
+        // Add active class to current
+        if (testimonials[index]) testimonials[index].classList.add('active');
+        if (dots[index]) dots[index].classList.add('active');
+        
+        currentTestimonial = index;
+    } catch (error) {
+        console.log('Testimonial slider error handled');
+    }
+}
+
+// Auto-slide testimonials
+setInterval(() => {
+    try {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(currentTestimonial);
+    } catch (error) {
+        console.log('Auto-slide error handled');
+    }
+}, 5000);
+
+// Stats Counter Animation
+function animateStats() {
+    try {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.dataset.count);
+            const increment = target / 100;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    stat.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    stat.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 20);
+        });
+    } catch (error) {
+        console.log('Stats animation error handled');
+    }
+}
+
+// Initialize stats animation when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(animateStats, 1000);
+});
+
+// Handle Enter key in newsletter input
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        const newsletterInput = document.getElementById('newsletterEmail');
+        if (newsletterInput) {
+            newsletterInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    subscribeNewsletter();
+                }
+            });
+        }
+    } catch (error) {
+        console.log('Newsletter input error handled');
+    }
+});

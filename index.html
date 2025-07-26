@@ -129,6 +129,119 @@
             </a>
         </div>
 
+        <!-- Newsletter Signup -->
+        <div class="newsletter-section">
+            <div class="newsletter-card">
+                <h3><i class="fas fa-envelope"></i> Subscribe Newsletter-kayaga!</h3>
+                <p>Hel tips cusub oo lacagta online ku saabsan maalin walba!</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Email-kaaga ku qor..." id="newsletterEmail">
+                    <button onclick="subscribeNewsletter()" class="subscribe-btn">
+                        <i class="fas fa-paper-plane"></i> Subscribe
+                    </button>
+                </div>
+                <div class="subscriber-count">
+                    <i class="fas fa-users"></i>
+                    <span>2,847+ dadka ah ayaa newsletter-kayaga subscribe u ah!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Free Resources Section -->
+        <div class="free-resources">
+            <h3><i class="fas fa-gift"></i> Bilaash Resources</h3>
+            <div class="resources-grid">
+                <div class="resource-item" onclick="downloadResource('ebook')">
+                    <i class="fas fa-book-open"></i>
+                    <h4>FREE E-Book</h4>
+                    <p>"10 Hab oo Lacag Looga Sameeyo Online"</p>
+                    <span class="download-btn">📥 Download</span>
+                </div>
+                <div class="resource-item" onclick="downloadResource('template')">
+                    <i class="fas fa-file-alt"></i>
+                    <h4>Business Templates</h4>
+                    <p>Freelancing contracts & proposal templates</p>
+                    <span class="download-btn">📥 Download</span>
+                </div>
+                <div class="resource-item" onclick="downloadResource('checklist')">
+                    <i class="fas fa-check-square"></i>
+                    <h4>Success Checklist</h4>
+                    <p>Step-by-step guide si aad lacag u samaysid</p>
+                    <span class="download-btn">📥 Download</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-section">
+            <h3><i class="fas fa-quote-left"></i> Maxay Ka Yidhaahdaan Dadka</h3>
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <div class="testimonial-content">
+                        <p>"FadalRewards baa i baray sida freelancing, hadda $500 baan bishiiba ka helaa!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" alt="Ahmed">
+                            <div>
+                                <strong>Ahmed M.</strong>
+                                <span>Freelancer, Mogadishu</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Online business-kayga wuxuu bilowday tips-ka FadalRewards. Mahadsanid!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face" alt="Amina">
+                            <div>
+                                <strong>Amina H.</strong>
+                                <span>Online Store Owner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Social media marketing tips-ka ay bixiyaan waa mid aad u fiican!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" alt="Omar">
+                            <div>
+                                <strong>Omar A.</strong>
+                                <span>Content Creator</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active" onclick="showTestimonial(0)"></span>
+                <span class="dot" onclick="showTestimonial(1)"></span>
+                <span class="dot" onclick="showTestimonial(2)"></span>
+            </div>
+        </div>
+
+        <!-- Stats Counter -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="2847">0</div>
+                    <div class="stat-label">Subscribers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="156">0</div>
+                    <div class="stat-label">Success Stories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="89">0</div>
+                    <div class="stat-label">Countries Reached</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="24">0</div>
+                    <div class="stat-label">Hours Support</div>
+                </div>
+            </div>
+        </div>
+
         <!-- Bottom Ad Banner -->
         <div class="ad-banner bottom-ad" onclick="window.open('https://www.khanacademy.org/economics-finance-domain/entrepreneurship2', '_blank')">
             <i class="fas fa-book"></i>
@@ -138,6 +251,11 @@
 
         <footer>
             <p>🚀 Making Money Online Since 2024 🚀</p>
+            <div class="footer-links">
+                <a href="mailto:fadalrewads@gmail.com">📧 Contact</a>
+                <a href="privacy.html">🔒 Privacy</a>
+                <a href="terms.html">📋 Terms</a>
+            </div>
         </footer>
     </div>
 
