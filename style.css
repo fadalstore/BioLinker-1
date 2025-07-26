@@ -1254,10 +1254,302 @@ footer {
     line-height: 1.5;
 }
 
+/* Contribution Page Styles */
+.contribution-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    background: var(--secondary-bg);
+    color: var(--text-primary);
+    border: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-section {
+    background: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.form-section h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-section h3 i {
+    color: var(--accent);
+}
+
+.contribution-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: var(--card-bg);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.rating-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rating-input input[type="radio"] {
+    display: none;
+}
+
+.rating-input label {
+    background: var(--card-bg);
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.rating-input input[type="radio"]:checked + label {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.submit-btn {
+    background: var(--gradient-4);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    align-self: flex-start;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(67, 233, 123, 0.3);
+}
+
+.guidelines-section {
+    margin: 30px 0;
+}
+
+.guidelines-section h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.guidelines-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.guideline-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-secondary);
+}
+
+.guideline-item i {
+    font-size: 18px;
+}
+
+.guideline-item i.fa-check-circle {
+    color: #27ae60;
+}
+
+.guideline-item i.fa-times-circle {
+    color: #e74c3c;
+}
+
+.recent-submissions {
+    margin: 30px 0;
+}
+
+.recent-submissions h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.submissions-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.submission-item {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid var(--accent);
+    transition: all 0.3s ease;
+}
+
+.submission-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.submission-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.submission-type {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+.submission-type.success-story {
+    background: var(--gradient-4);
+}
+
+.submission-type.tip {
+    background: var(--gradient-2);
+}
+
+.submission-type.question {
+    background: var(--gradient-3);
+}
+
+.submission-type.review {
+    background: var(--gradient-5);
+}
+
+.submission-time {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.submission-item h4 {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.submission-author {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.submission-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.submission-stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 /* Responsive Design */
 @media (max-width: 480px) {
     .container {
         padding: 15px;
+    }
+    
+    .contribution-tabs {
+        flex-direction: column;
+    }
+    
+    .form-section {
+        padding: 20px;
+    }
+    
+    .submission-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
     }
     
     .profile-image {

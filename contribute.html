@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ku Dar Content - FadalRewards</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Dib u noqo</span>
+            </a>
+            <h1>Ku Dar Content</h1>
+        </div>
+
+        <div class="content-card">
+            <h2>🌟 Wadaag Khibradaada & Success Stories! 🌟</h2>
+            
+            <div class="contribution-tabs">
+                <button class="tab-btn active" onclick="showTab('story')">
+                    <i class="fas fa-star"></i> Success Story
+                </button>
+                <button class="tab-btn" onclick="showTab('tip')">
+                    <i class="fas fa-lightbulb"></i> Money Tip
+                </button>
+                <button class="tab-btn" onclick="showTab('question')">
+                    <i class="fas fa-question-circle"></i> Su'aal
+                </button>
+                <button class="tab-btn" onclick="showTab('review')">
+                    <i class="fas fa-thumbs-up"></i> Review
+                </button>
+            </div>
+
+            <!-- Success Story Form -->
+            <div id="story-tab" class="tab-content active">
+                <div class="form-section">
+                    <h3><i class="fas fa-trophy"></i> Wadaag Success Story-gaaga!</h3>
+                    <p>U sheeg dadka sida aad lacag uga samaysay online ama business-ka aad bilowday!</p>
+                    
+                    <form class="contribution-form" onsubmit="submitContribution(event, 'story')">
+                        <div class="form-group">
+                            <label>Magacaaga (ama nickname):</label>
+                            <input type="text" name="name" required placeholder="Ahmed M.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Magaalada/Wadanka:</label>
+                            <input type="text" name="location" placeholder="Mogadishu, Somalia">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Success Story Title:</label>
+                            <input type="text" name="title" required placeholder="Sidaan $500 uga samayay freelancing...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Sheekadaada (detailed):</label>
+                            <textarea name="story" required rows="8" placeholder="Ku qor sida aad bilowday, caqabadaha aad la kulmay, iyo sida aad u guulaysatay..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Monthly Income Range:</label>
+                            <select name="income" required>
+                                <option value="">Dooro...</option>
+                                <option value="$0-100">$0 - $100</option>
+                                <option value="$100-500">$100 - $500</option>
+                                <option value="$500-1000">$500 - $1,000</option>
+                                <option value="$1000-5000">$1,000 - $5,000</option>
+                                <option value="$5000+">$5,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Platform/Website aad ka shaqaysay:</label>
+                            <input type="text" name="platform" placeholder="Upwork, Fiverr, YouTube, iwm...">
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Story
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tips Form -->
+            <div id="tip-tab" class="tab-content">
+                <div class="form-section">
+                    <h3><i class="fas fa-lightbulb"></i> Wadaag Money Tip Cusub!</h3>
+                    <p>Tip fiican oo dadka kale u faa'iidaysa lacagta online samaynta!</p>
+                    
+                    <form class="contribution-form" onsubmit="submitContribution(event, 'tip')">
+                        <div class="form-group">
+                            <label>Magacaaga:</label>
+                            <input type="text" name="name" required placeholder="Amina H.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Tip Category:</label>
+                            <select name="category" required>
+                                <option value="">Dooro...</option>
+                                <option value="Freelancing">Freelancing</option>
+                                <option value="Social Media">Social Media Marketing</option>
+                                <option value="E-commerce">E-commerce/Online Store</option>
+                                <option value="Content Creation">Content Creation</option>
+                                <option value="Affiliate Marketing">Affiliate Marketing</option>
+                                <option value="Online Teaching">Online Teaching</option>
+                                <option value="Other">Kale</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Tip Title:</label>
+                            <input type="text" name="title" required placeholder="Sida Upwork clients loo helaa...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Tip-ka (detailed):</label>
+                            <textarea name="tip" required rows="6" placeholder="Ku qor tip-ka si dadka ay uga faa'iidaysan karaan..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Links/Resources (haddii jiraan):</label>
+                            <textarea name="resources" rows="3" placeholder="Websites, tools, ama resources kale oo la xidhiidha tip-kaaga..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Tip
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Questions Form -->
+            <div id="question-tab" class="tab-content">
+                <div class="form-section">
+                    <h3><i class="fas fa-question-circle"></i> Weydii Su'aal!</h3>
+                    <p>Su'aalaha lacagta online ku saabsan - community-ga ayaa kaa jawaabi doona!</p>
+                    
+                    <form class="contribution-form" onsubmit="submitContribution(event, 'question')">
+                        <div class="form-group">
+                            <label>Magacaaga:</label>
+                            <input type="text" name="name" required placeholder="Omar A.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Su'aasha Category:</label>
+                            <select name="category" required>
+                                <option value="">Dooro...</option>
+                                <option value="Getting Started">Bilowga - How to Start</option>
+                                <option value="Freelancing">Freelancing</option>
+                                <option value="Business">Online Business</option>
+                                <option value="Marketing">Marketing & Promotion</option>
+                                <option value="Technical">Technical Issues</option>
+                                <option value="Legal/Halal">Legal/Halal Concerns</option>
+                                <option value="Other">Kale</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Su'aasha:</label>
+                            <input type="text" name="title" required placeholder="Sidee freelancing loo bilaabaa?">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Faahfaahin dheeraad ah:</label>
+                            <textarea name="details" rows="5" placeholder="Wax kale oo aad rabto in aad naga weydiiso..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Experience Level:</label>
+                            <select name="experience" required>
+                                <option value="">Dooro...</option>
+                                <option value="Beginner">Beginner - Wali ma bilaabo</option>
+                                <option value="Some Experience">Wax yar oo khibrad ah</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Su'aal
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Reviews Form -->
+            <div id="review-tab" class="tab-content">
+                <div class="form-section">
+                    <h3><i class="fas fa-star"></i> Review Platform/Service!</h3>
+                    <p>Wadaag review-ga platform-ka, course-ka ama service-ka aad isticmaashay!</p>
+                    
+                    <form class="contribution-form" onsubmit="submitContribution(event, 'review')">
+                        <div class="form-group">
+                            <label>Magacaaga:</label>
+                            <input type="text" name="name" required placeholder="Khadija M.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Platform/Service Name:</label>
+                            <input type="text" name="platform" required placeholder="Upwork, Coursera, Skillshare, iwm...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Rating:</label>
+                            <div class="rating-input">
+                                <input type="radio" name="rating" value="5" id="5stars" required>
+                                <label for="5stars">⭐⭐⭐⭐⭐ (5/5)</label>
+                                
+                                <input type="radio" name="rating" value="4" id="4stars">
+                                <label for="4stars">⭐⭐⭐⭐ (4/5)</label>
+                                
+                                <input type="radio" name="rating" value="3" id="3stars">
+                                <label for="3stars">⭐⭐⭐ (3/5)</label>
+                                
+                                <input type="radio" name="rating" value="2" id="2stars">
+                                <label for="2stars">⭐⭐ (2/5)</label>
+                                
+                                <input type="radio" name="rating" value="1" id="1star">
+                                <label for="1star">⭐ (1/5)</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Review-ga:</label>
+                            <textarea name="review" required rows="6" placeholder="Maxaad ka malaynaysaa platform-kan? Pro iyo cons-ka?"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Immisa lacag baad ka samaysay?</label>
+                            <select name="earnings">
+                                <option value="">Optional...</option>
+                                <option value="$0-50">$0 - $50</option>
+                                <option value="$50-200">$50 - $200</option>
+                                <option value="$200-500">$200 - $500</option>
+                                <option value="$500-1000">$500 - $1,000</option>
+                                <option value="$1000+">$1,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Ma ku talinaysaa dadka kale?</label>
+                            <select name="recommend" required>
+                                <option value="">Dooro...</option>
+                                <option value="Highly Recommend">Aad ayaan u talinayaa! 👍</option>
+                                <option value="Recommend">Waan talinayaa</option>
+                                <option value="Neutral">Neutral - waa ok</option>
+                                <option value="Not Recommend">Ma talinayo</option>
+                                <option value="Avoid">Avoid - ha isticmaalin! ❌</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Review
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submission Guidelines -->
+        <div class="guidelines-section">
+            <h3><i class="fas fa-info-circle"></i> Submission Guidelines</h3>
+            <div class="guidelines-card">
+                <div class="guideline-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>✅ Content waa inuu noqdaa halal & Islamic principles ku saleysan</span>
+                </div>
+                <div class="guideline-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>✅ Wax walba waa inuu noqdaa run & verified information</span>
+                </div>
+                <div class="guideline-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>✅ Respectful language isticmaal - no offensive content</span>
+                </div>
+                <div class="guideline-item">
+                    <i class="fas fa-times-circle"></i>
+                    <span>❌ Spam, ads, ama self-promotion excessive ma ogola</span>
+                </div>
+                <div class="guideline-item">
+                    <i class="fas fa-times-circle"></i>
+                    <span>❌ Fake success stories ama misleading information</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Submissions -->
+        <div class="recent-submissions">
+            <h3><i class="fas fa-clock"></i> Recent Submissions</h3>
+            <div id="submissions-feed" class="submissions-feed">
+                <div class="submission-item">
+                    <div class="submission-header">
+                        <span class="submission-type success-story">📈 Success Story</span>
+                        <span class="submission-time">5 daqiiqo ka hor</span>
+                    </div>
+                    <h4>"Sidaan $800 uga samayay YouTube channel-ka"</h4>
+                    <p class="submission-author">by Ahmed M. - Mogadishu</p>
+                    <div class="submission-stats">
+                        <span><i class="fas fa-eye"></i> 127 views</span>
+                        <span><i class="fas fa-thumbs-up"></i> 23 likes</span>
+                    </div>
+                </div>
+                
+                <div class="submission-item">
+                    <div class="submission-header">
+                        <span class="submission-type tip">💡 Tip</span>
+                        <span class="submission-time">15 daqiiqo ka hor</span>
+                    </div>
+                    <h4>"Sida Upwork profile loo optimize gareyo"</h4>
+                    <p class="submission-author">by Amina H. - Hargeisa</p>
+                    <div class="submission-stats">
+                        <span><i class="fas fa-eye"></i> 89 views</span>
+                        <span><i class="fas fa-thumbs-up"></i> 15 likes</span>
+                    </div>
+                </div>
+                
+                <div class="submission-item">
+                    <div class="submission-header">
+                        <span class="submission-type question">❓ Su'aal</span>
+                        <span class="submission-time">1 saacad ka hor</span>
+                    </div>
+                    <h4>"Freelancing ma halal baa?"</h4>
+                    <p class="submission-author">by Omar K. - London</p>
+                    <div class="submission-stats">
+                        <span><i class="fas fa-eye"></i> 203 views</span>
+                        <span><i class="fas fa-comments"></i> 8 comments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Form submission
+        function submitContribution(event, type) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Store submission locally (in real app, this would go to a database)
+            let submissions = JSON.parse(localStorage.getItem('submissions') || '[]');
+            
+            const submission = {
+                id: Date.now(),
+                type: type,
+                timestamp: new Date().toISOString(),
+                data: data,
+                status: 'pending_review'
+            };
+            
+            submissions.unshift(submission);
+            localStorage.setItem('submissions', JSON.stringify(submissions));
+            
+            // Show success message
+            showSubmissionSuccess(type);
+            
+            // Reset form
+            event.target.reset();
+            
+            // Update recent submissions
+            updateRecentSubmissions();
+        }
+
+        function showSubmissionSuccess(type) {
+            const messages = {
+                'story': '✅ Mahadsanid Success Story-gaaga! Waxaan review gareynaa oo 24 saacadood gudahood ayaan publish gareynaa!',
+                'tip': '✅ Tip-kaaga waa la helay! Waxaan check gareynaa oo publish gareynaa hadda dhow!',
+                'question': '✅ Su\'aashaada waa la diiwaan geliyay! Community-ga ayaa jawaab siin doona!',
+                'review': '✅ Review-gaaga waa la qoray! Mahadsanid feedback-ka!'
+            };
+            
+            const alertDiv = document.createElement('div');
+            alertDiv.innerHTML = messages[type];
+            alertDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--gradient-4);
+                color: white;
+                padding: 20px 30px;
+                border-radius: 15px;
+                font-weight: bold;
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                max-width: 90%;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            `;
+            
+            document.body.appendChild(alertDiv);
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+
+        function updateRecentSubmissions() {
+            // This would update the recent submissions feed in a real application
+            console.log('Recent submissions updated');
+        }
+    </script>
+</body>
+</html>
