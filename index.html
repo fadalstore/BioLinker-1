@@ -147,6 +147,17 @@
         <span>Halal!</span>
     </div>
 
+    <script>
+        // Basic error handling
+        window.addEventListener('error', function(e) {
+            console.log('Error handled:', e.message);
+        });
+        
+        window.addEventListener('unhandledrejection', function(e) {
+            console.log('Promise rejection handled');
+            e.preventDefault();
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
