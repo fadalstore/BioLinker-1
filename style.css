@@ -330,6 +330,129 @@ footer {
     font-weight: bold;
 }
 
+/* Page Header */
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+    background: var(--card-bg);
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Content Card */
+.content-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.section h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section h3 i {
+    color: var(--accent);
+}
+
+.section p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.section li {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    padding-left: 0;
+    line-height: 1.5;
+}
+
+/* Content Grid */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.content-item {
+    background: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.content-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.content-item i {
+    font-size: 32px;
+    color: var(--accent);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.content-item h4 {
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.content-item p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 /* Responsive Design */
 @media (max-width: 480px) {
     .container {
@@ -353,5 +476,17 @@ footer {
         bottom: 15px;
         right: 15px;
         padding: 12px;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-header h1 {
+        font-size: 24px;
+    }
+    
+    .content-card {
+        padding: 20px;
     }
 }
