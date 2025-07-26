@@ -1,3 +1,15 @@
 modules = ["python-3.9", "python-3.8", "php-8.1", "php-8.2", "java-graalvm22.3", "dotnet-10.0"]
 [nix]
 channel = "stable-25_05"
+
+[workflows]
+runButton = "Serve Website"
+
+[[workflows.workflow]]
+name = "Serve Website"
+author = 43261969
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 -m http.server 5000"
