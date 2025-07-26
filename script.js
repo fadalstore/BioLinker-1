@@ -199,3 +199,148 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Newsletter input error handled');
     }
 });
+
+// Auto Share Functions
+const shareData = {
+    url: window.location.href,
+    title: 'FadalRewards - Making Money Online',
+    text: '🌟 Lacagta Online ku Sameynta! FadalRewards - Content Creator & Online Entrepreneur. Barashada ganacsiga, freelancing, iyo halal business tips! 💰✨'
+};
+
+// WhatsApp Share
+function shareToWhatsApp() {
+    try {
+        const message = encodeURIComponent(`${shareData.text}\n\n${shareData.url}`);
+        const whatsappUrl = `https://wa.me/?text=${message}`;
+        window.open(whatsappUrl, '_blank');
+        console.log('WhatsApp share opened');
+    } catch (error) {
+        console.log('WhatsApp share error handled');
+    }
+}
+
+// Facebook Share
+function shareToFacebook() {
+    try {
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareData.url)}`;
+        window.open(facebookUrl, '_blank', 'width=600,height=400');
+        console.log('Facebook share opened');
+    } catch (error) {
+        console.log('Facebook share error handled');
+    }
+}
+
+// Twitter Share
+function shareToTwitter() {
+    try {
+        const twitterText = encodeURIComponent(`${shareData.text} ${shareData.url}`);
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${twitterText}`;
+        window.open(twitterUrl, '_blank', 'width=600,height=400');
+        console.log('Twitter share opened');
+    } catch (error) {
+        console.log('Twitter share error handled');
+    }
+}
+
+// Telegram Share
+function shareToTelegram() {
+    try {
+        const telegramText = encodeURIComponent(`${shareData.text}\n${shareData.url}`);
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(shareData.url)}&text=${telegramText}`;
+        window.open(telegramUrl, '_blank');
+        console.log('Telegram share opened');
+    } catch (error) {
+        console.log('Telegram share error handled');
+    }
+}
+
+// Copy to Clipboard
+function copyToClipboard() {
+    try {
+        const textToCopy = `${shareData.text}\n\n${shareData.url}`;
+        
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showCopySuccess();
+            });
+        } else {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showCopySuccess();
+        }
+        console.log('Link copied to clipboard');
+    } catch (error) {
+        console.log('Clipboard error handled');
+        alert('❌ Link copy gareyn kari waayay. Fadlan manually copy garee.');
+    }
+}
+
+// Show copy success message
+function showCopySuccess() {
+    const originalText = document.querySelector('.clipboard span').textContent;
+    const clipboardBtn = document.querySelector('.clipboard span');
+    
+    clipboardBtn.textContent = '✅ Copied!';
+    setTimeout(() => {
+        clipboardBtn.textContent = originalText;
+    }, 2000);
+    
+    // Optional: Show a temporary alert
+    const alertDiv = document.createElement('div');
+    alertDiv.innerHTML = '✅ Link ayaa clipboard-ka lagu kaydiyay!';
+    alertDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gradient-4);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        font-weight: bold;
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(alertDiv);
+    setTimeout(() => {
+        alertDiv.remove();
+    }, 3000);
+}
+
+// Native Share (Web Share API)
+function shareNative() {
+    try {
+        if (navigator.share) {
+            navigator.share({
+                title: shareData.title,
+                text: shareData.text,
+                url: shareData.url
+            }).then(() => {
+                console.log('Native share successful');
+            }).catch(() => {
+                fallbackShare();
+            });
+        } else {
+            fallbackShare();
+        }
+    } catch (error) {
+        console.log('Native share error handled');
+        fallbackShare();
+    }
+}
+
+// Fallback share function
+function fallbackShare() {
+    try {
+        copyToClipboard();
+        alert('📱 Device-kaaga native sharing ma taageero. Link ayaa clipboard-ka lagu kaydiyay!');
+    } catch (error) {
+        console.log('Fallback share error handled');
+    }
+}
