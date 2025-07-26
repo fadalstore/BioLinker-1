@@ -270,6 +270,20 @@ body {
     to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
 }
 
+/* Premium Adsterra Link */
+.adsterra-premium {
+    background: linear-gradient(135deg, #00c851 0%, #007e33 100%);
+    border: 3px solid #00c851;
+    animation: premiumGlow 1.5s ease-in-out infinite alternate;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@keyframes premiumGlow {
+    from { box-shadow: 0 0 20px rgba(0, 200, 81, 0.5); }
+    to { box-shadow: 0 0 30px rgba(0, 200, 81, 0.8); }
+}
+
 /* Social Media Buttons */
 .instagram { background: var(--gradient-2); }
 .twitter { background: var(--gradient-3); }

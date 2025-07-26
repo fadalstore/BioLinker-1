@@ -27,9 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Add click tracking for ads
-document.querySelectorAll('.ad-banner, .content-ad, .floating-ad').forEach(function(ad) {
+document.querySelectorAll('.ad-banner, .content-ad, .floating-ad, .adsterra-premium').forEach(function(ad) {
     ad.addEventListener('click', function() {
         console.log('Ad clicked - tracking revenue');
+        // Track premium link clicks
+        if (ad.classList.contains('adsterra-premium')) {
+            console.log('Premium Adsterra link clicked - high revenue potential!');
+        }
     });
 });
 
