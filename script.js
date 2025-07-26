@@ -566,3 +566,233 @@ function fallbackShare() {
         console.log('Fallback share error handled');
     }
 }
+
+// Follow/Unfollow Functionality
+function toggleFollow() {
+    try {
+        const followBtn = document.getElementById('followBtn');
+        const followText = document.getElementById('followText');
+        const followersCount = document.getElementById('followersCount');
+        
+        const isFollowing = followBtn.classList.contains('following');
+        
+        if (isFollowing) {
+            // Unfollow
+            followBtn.classList.remove('following');
+            followText.textContent = 'Follow';
+            
+            // Update follower count
+            let currentCount = parseInt(followersCount.textContent.replace(/[^0-9]/g, ''));
+            followersCount.textContent = (currentCount - 1).toLocaleString() + '+';
+            
+            showNotification('❌ Unfollow gareysay FadalRewards', 'info');
+            
+            // Remove from localStorage
+            localStorage.removeItem('isFollowing');
+            
+        } else {
+            // Follow
+            followBtn.classList.add('following');
+            followText.textContent = 'Following';
+            
+            // Update follower count
+            let currentCount = parseInt(followersCount.textContent.replace(/[^0-9]/g, ''));
+            followersCount.textContent = (currentCount + 1).toLocaleString() + '+';
+            
+            showNotification('✅ Mahadsanid follow gareysay! Waxaad heli doontaa updates cusub!', 'success');
+            
+            // Save to localStorage
+            localStorage.setItem('isFollowing', 'true');
+            
+            // Track follow action
+            trackUserAction('follow');
+        }
+        
+    } catch (error) {
+        console.log('Follow toggle error handled');
+    }
+}
+
+// Like/Unlike Functionality
+function toggleLike() {
+    try {
+        const likeBtn = document.getElementById('likeBtn');
+        const likeText = document.getElementById('likeText');
+        const likesCount = document.getElementById('likesCount');
+        
+        const isLiked = likeBtn.classList.contains('liked');
+        
+        if (isLiked) {
+            // Unlike
+            likeBtn.classList.remove('liked');
+            likeText.textContent = 'Like';
+            
+            // Update likes count
+            let currentCount = parseInt(likesCount.textContent.replace(/[^0-9]/g, ''));
+            likesCount.textContent = (currentCount - 1).toLocaleString();
+            
+            showNotification('💔 Like-ka ayaad ka saaray', 'info');
+            
+            // Remove from localStorage
+            localStorage.removeItem('isLiked');
+            
+        } else {
+            // Like
+            likeBtn.classList.add('liked');
+            likeText.textContent = 'Liked';
+            
+            // Update likes count
+            let currentCount = parseInt(likesCount.textContent.replace(/[^0-9]/g, ''));
+            likesCount.textContent = (currentCount + 1).toLocaleString();
+            
+            showNotification('❤️ Mahadsanid like gareysay! Content-ka cusub ayaa imanaya!', 'success');
+            
+            // Save to localStorage
+            localStorage.setItem('isLiked', 'true');
+            
+            // Track like action
+            trackUserAction('like');
+        }
+        
+    } catch (error) {
+        console.log('Like toggle error handled');
+    }
+}
+
+// Share Profile Function
+function shareProfile() {
+    try {
+        const profileShareData = {
+            title: 'FadalRewards - Making Money Online Expert',
+            text: '🌟 Follow @fadalrewads - Content Creator & Online Entrepreneur! 💰\n\n✅ FREE Business Tips\n✅ Freelancing Guides\n✅ Halal Business Ideas\n✅ Success Stories\n\n👇 Check out the profile:',
+            url: window.location.href
+        };
+        
+        if (navigator.share) {
+            navigator.share(profileShareData).then(() => {
+                showNotification('✅ Profile successfully shared!', 'success');
+                trackUserAction('share_profile');
+            });
+        } else {
+            const shareText = `${profileShareData.text}\n\n${profileShareData.url}`;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    showNotification('📋 Profile link copied to clipboard!', 'success');
+                    trackUserAction('share_profile');
+                });
+            } else {
+                // Fallback
+                const textArea = document.createElement('textarea');
+                textArea.value = shareText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('📋 Profile link copied!', 'success');
+                trackUserAction('share_profile');
+            }
+        }
+        
+    } catch (error) {
+        console.log('Profile share error handled');
+    }
+}
+
+// Show Notification Function
+function showNotification(message, type = 'info') {
+    try {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" 
+                   style="color: ${type === 'success' ? '#27ae60' : type === 'error' ? '#e74c3c' : '#3498db'};"></i>
+                <span>${message}</span>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto remove after 4 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease forwards';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 4000);
+        
+    } catch (error) {
+        console.log('Notification error handled');
+    }
+}
+
+// Track User Actions
+function trackUserAction(action) {
+    try {
+        let userActions = JSON.parse(localStorage.getItem('userActions') || '{}');
+        const today = new Date().toDateString();
+        
+        if (!userActions[today]) {
+            userActions[today] = {};
+        }
+        
+        if (!userActions[today][action]) {
+            userActions[today][action] = 0;
+        }
+        
+        userActions[today][action]++;
+        localStorage.setItem('userActions', JSON.stringify(userActions));
+        
+        console.log(`User action tracked: ${action}`);
+        
+    } catch (error) {
+        console.log('User action tracking error handled');
+    }
+}
+
+// Load saved follow/like states
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        // Load follow state
+        if (localStorage.getItem('isFollowing') === 'true') {
+            const followBtn = document.getElementById('followBtn');
+            const followText = document.getElementById('followText');
+            if (followBtn && followText) {
+                followBtn.classList.add('following');
+                followText.textContent = 'Following';
+            }
+        }
+        
+        // Load like state
+        if (localStorage.getItem('isLiked') === 'true') {
+            const likeBtn = document.getElementById('likeBtn');
+            const likeText = document.getElementById('likeText');
+            if (likeBtn && likeText) {
+                likeBtn.classList.add('liked');
+                likeText.textContent = 'Liked';
+            }
+        }
+        
+    } catch (error) {
+        console.log('State loading error handled');
+    }
+});
+
+// Add slide out animation for notifications
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);

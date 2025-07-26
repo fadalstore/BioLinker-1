@@ -31,14 +31,31 @@
             <div class="profile-info">
                 <h1 class="profile-name">fadalrewads</h1>
                 <p class="profile-bio">💰 Content Creator & Online Entrepreneur 💰<br>Making Money Online Expert</p>
+                
+                <!-- Follow and Like Buttons -->
+                <div class="profile-actions">
+                    <button class="follow-btn" onclick="toggleFollow()" id="followBtn">
+                        <i class="fas fa-user-plus"></i>
+                        <span id="followText">Follow</span>
+                    </button>
+                    <button class="like-btn" onclick="toggleLike()" id="likeBtn">
+                        <i class="fas fa-heart"></i>
+                        <span id="likeText">Like</span>
+                    </button>
+                    <button class="share-profile-btn" onclick="shareProfile()">
+                        <i class="fas fa-share"></i>
+                        <span>Share Profile</span>
+                    </button>
+                </div>
+
                 <div class="profile-stats">
                     <div class="stat-mini">
-                        <span class="stat-number-mini">2,847+</span>
+                        <span class="stat-number-mini" id="followersCount">2,847+</span>
                         <span class="stat-label-mini">Followers</span>
                     </div>
                     <div class="stat-mini">
-                        <span class="stat-number-mini">156</span>
-                        <span class="stat-label-mini">Success Stories</span>
+                        <span class="stat-number-mini" id="likesCount">3,456</span>
+                        <span class="stat-label-mini">Likes</span>
                     </div>
                     <div class="stat-mini">
                         <span class="stat-number-mini">89</span>
